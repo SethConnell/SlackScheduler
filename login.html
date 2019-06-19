@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/css?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Arimo&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Poppins:300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<title>How to Schedule Slack Messages | Message Schedule</title>
+<style>
+	.userinput {
+		margin: auto;
+		border-radius: 15px;
+		border: none;
+		text-align: center;
+		width: 250px;
+		display: block;
+		height: 45px;
+		font-size: 20px;
+	}
+    body {
+        background-color: #202020;
+        padding: 0px;
+        margin: 0px;
+    }
+    .content {
+        width: 50%;
+        margin: auto;
+        margin-top: 15px;
+    }
+    #bluesection {
+        background: linear-gradient(to right, #3271e2 0%, #5d8de3 100%);
+        width: 100%;
+        min-height: 100vh;
+        margin-bottom: 0px;
+    }
+    
+    #whitesection {
+        background-color: #ffffff;
+        width: 100%;
+        height: 800px;
+        margin-top: 0px;
+    }
+    
+    header {
+        width: 100%;
+    }
+    name {
+        float: left;
+        margin-left: 40px;
+        margin-top: 10px;
+        color: #ffffff;
+        font-family: 'Pacifico', cursive;
+        font-size: 30px;
+        
+    }
+    
+    #subsubheadline {
+        text-align: center;
+        color: #ffffff;
+        font-family: 'Arimo', sans-serif;
+        font-size: 18px;
+    }
+    
+    #submitbutton {
+		border: none;
+        text-align: center;
+        background: -webkit-gradient(linear, left top, left bottom, from(#61BD4F), to(#5AAC44));
+        background: linear-gradient(to bottom, #61BD4F 0%, #5AAC44 100%);
+        box-shadow: 0 2px 0 #3F6F21;
+        color: #fff;
+        font-weight: bold;
+        padding-top: 8px;
+        padding-bottom: 8px;
+        padding-right: 15px;
+        padding-left: 15px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-family: 'Arimo', sans-serif;
+        font-size: 18px;
+		margin: auto;
+		width: 200px;
+		display: block;
+    }
+    
+    #subheadline {
+        padding-top: 180px;
+        text-align: center;
+        font-family: 'Poppins', sans-serif;
+        color: #ffffff;
+        font-size: 38px;
+    }
+    
+    #slackbutton {
+        margin-left: auto;
+    }
+    
+    #addslackbuttonholder {
+        width: 150px;
+        margin: auto;
+    }
+    
+    #firstimage, #firstcontent {
+        text-align: center;
+    }
+    
+    #firstimage {
+        margin-top: 100px;
+        padding: 0px;
+        width: 20px;
+    }
+    
+    #firstcontent {
+        margin-top: 100px;
+    }
+    
+    .row2 {
+        margin-top: 40px;
+    }
+    
+    .row {
+        width: 100%;
+        height: 200px;
+    }
+    
+    footer {
+        color: #ffffff;
+        text-align: center;
+        
+    }
+    
+    #linkbutton {
+		max-width: 200px;
+		margin: auto;
+        color: #ffffff;
+        padding: 10px;
+        border-radius: 7px;
+        background: -webkit-gradient(linear, left top, left bottom, from(#61BD4F), to(#5AAC44));
+        color: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-family: 'Arimo', sans-serif;
+        font-size: 18px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        display:block;
+    }
+    
+    @media only screen and (max-width: 1300px) {
+        .content {
+            width: 100%;
+            margin-top: 0px;
+        }
+        
+        header {
+            margin-top: 0px;
+        }
+        #subheadline {
+            margin-top: 0px;
+        }
+    }
+    
+    @media only screen and (max-width: 570px) {
+        name {
+            font-size: 15px;
+            margin-top: 25px;
+        }
+        
+        .login {
+            font-size: 15px;
+        }
+        
+        #subheadline {
+            padding-top: 100px;
+        }
+        #firstimage {
+            display: none;
+        }
+        .row3 {
+            display: none;
+        }
+    }
+</style>
+</head>
+
+<body>
+<div class = "content">
+    
+    <div id="bluesection">
+        <header>
+			<name>MessageSchedule.com</name>
+        </header>
+        
+        <h1 id = "subheadline">Please Login</h1>
+        
+        <h2 id = "subsubheadline">Enter the following information to continue:</h2>
+        <br>
+		<form action="" method="post">
+			<input class="userinput" placeholder="Email" name="email">
+			<br>
+			<input class="userinput" placeholder="Password" type="password" name="password">
+			<br>
+			<input type="submit" value="Submit" id="submitbutton">
+		</form>
+    </div>
+    <br>
+    <footer>Copyright © 2019 Messageschedule - All Rights Reserved.</footer>
+</div>
+</body>
+
+</html>
