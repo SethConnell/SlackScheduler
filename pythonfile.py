@@ -82,6 +82,12 @@ def redirecting():
 def done():
     return "you did it"
 
+#Logs out user.
+@app.route("/logout")
+def logout():
+    session.clear()
+    return "You're all logged out."
+
 # This makes sure that the file is, in fact, the source file for the flask app.
 if __name__ == '__main__':
     app.run(port=4390)
