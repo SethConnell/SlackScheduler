@@ -3,26 +3,15 @@ from flask import Flask, redirect, request, url_for, session
 app = Flask(__name__)
 import requests
 import os
-import MySQLdb
+from dbfunctions import *
 
 # Setting slack ids.
 clientid = os.getenv('slackclientid')
 secretid = os.getenv('slacksecretid')
 
-# Setting database variables.
-serverusername = os.getenv("serverusername")
-serverpassword = os.getenv("serverpassword")
-dbpassword = os.getenv("dbpassword")
-dbname = os.getenv("dbname")
-
 globaltoken = ''
 
-# Makes sure table exists. If not, it creates one.
-conn = MySQLdb.connect("SethConnell.mysql.pythonanywhere-services.com", serverusername, dbpassword, dbname)
-c = conn.cursor()
-sql = "CREATE TABLE IF NOT EXISTS `users` (id int(11) NOT NULL auto_increment, email TEXT NOT NULL, password TEXT NOT NULL, slackid TEXT NOT NULL, primary key (id))"
-c.execute(sql)
-
+verifySetup()
 
 @app.route('/')
 def hello_world():
@@ -52,7 +41,8 @@ def redirecting():
         retypedpassword = request.form["retypedpassword"]
         if password == retypedpassword and "@" in emailaddress and len(globaltoken) > 0:
             session["user"] = emailaddress
-            return "Email: " + str(emailaddress) + "<br>Password: " + str(password) + "<br>Usertoken: " + str(globaltoken)
+            createUser(emailaddress, password, globaltoken)
+            return "Everything created successfully!"
     code = request.args.get('code')
     url = 'https://slack.com/api/oauth.access'
     try:
