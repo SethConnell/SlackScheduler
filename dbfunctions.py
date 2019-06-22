@@ -42,3 +42,22 @@ def createUser(email, password, slackid):
         db.commit()
     except:
         db.rollback()
+
+def verifyUser(givenemail, givenpassword):
+    conn = MySQLdb.connect(serverusername + ".mysql.pythonanywhere-services.com", serverusername, dbpassword, dbname)
+    c = conn.cursor()
+    sql = "SELECT id FROM `users` WHERE (email = '%d' AND password = '%d')" % (str(givenemail), str(givenpassword))
+    try:
+        # Execute the SQL command
+        cursor.execute(sql)
+        # Fetch all the rows in a list of lists.
+        results = cursor.fetchall()
+        for row in results:
+            id = row[0]
+        # Now print fetched result
+        return True
+    except:
+        return False
+
+
+    
