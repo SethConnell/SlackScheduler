@@ -27,6 +27,19 @@ def authorization():
 def hello_world():
     return render_template('index.html', clientid=clientid)
 
+# Setting login page.
+@app.route("/login", methods=['GET', 'POST'])
+def login():
+    if request.method == "POST":
+        email = request.form['email']
+        password = request.form["password"]
+        if verifyLogin(email, password) == True:
+            return "Good job"
+        else:
+            return "Oops"
+    else:
+        return render_template("login.html")
+
 # Setting authorization page
 @app.route('/auth')
 def authorization():

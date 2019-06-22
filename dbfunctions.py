@@ -15,12 +15,30 @@ def verifySetup():
     sql = "CREATE TABLE IF NOT EXISTS `users` (id int(11) NOT NULL auto_increment, email TEXT NOT NULL, password TEXT NOT NULL, slackid TEXT NOT NULL, primary key (id))"
     c.execute(sql)
 
+def verifyLogin(givenemail, givenpassword):
+    conn = MySQLdb.connect(serverusername + ".mysql.pythonanywhere-services.com", serverusername, dbpassword, dbname)
+    c = conn.cursor()
+    sql = "SELECT %s FROM users \
+          WHERE email = '%s'" % ("password", str(givenemail))
+    try:
+       # Execute the SQL command
+       c.execute(sql)
+       # Fetch all the rows in a list of lists.
+       results = c.fetchall()
+       for row in results:
+          password = row[0]
+          # Now print fetched result
+          if str(password) == str(givenpassword):
+              return True
+    except:
+       return False
+
 def getPassword(email):
     # Gets password from user account.
     conn = MySQLdb.connect(serverusername + ".mysql.pythonanywhere-services.com", serverusername, dbpassword, dbname)
     c = conn.cursor()
     sql = "SELECT %s FROM users \
-          WHERE email '%s'" % ("password", str(email))
+          WHERE email = '%s'" % ("password", str(email))
     try:
        # Execute the SQL command
        c.execute(sql)
@@ -36,7 +54,7 @@ def getPassword(email):
 def createUser(email, password, slackid):
     conn = MySQLdb.connect(serverusername + ".mysql.pythonanywhere-services.com", serverusername, dbpassword, dbname)
     c = conn.cursor()
-    sql = "INSERT INTO `users`(email,password,slackid) VALUES (%s,%s,%s)" % (email, password, slackid)
+    sql = "INSERT INTO `users` (email, password, slackid) VALUES ('%s', '%s', '%s')" % (email, password, slackid)
     try:
         c.execute(sql)
         conn.commit()
