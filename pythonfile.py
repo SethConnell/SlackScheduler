@@ -34,6 +34,8 @@ def login():
         email = request.form['email']
         password = request.form["password"]
         if verifyLogin(email, password) == True:
+            session["email"] = email
+            session["userpassword"] = password
             return "Good job"
         else:
             return "Oops"
@@ -55,7 +57,8 @@ def redirecting():
         password = request.form["password"]
         retypedpassword = request.form["retypedpassword"]
         if password == retypedpassword and "@" in emailaddress and len(globaltoken) > 0:
-            session["user"] = emailaddress
+            session["email"] = emailaddress
+            session["userpassword"] = password
             createUser(emailaddress, password, globaltoken)
             return "Everything created successfully!"
         else:
