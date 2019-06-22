@@ -19,8 +19,8 @@ def getPassword(email):
     # Gets password from user account.
     conn = MySQLdb.connect(serverusername + ".mysql.pythonanywhere-services.com", serverusername, dbpassword, dbname)
     c = conn.cursor()
-    sql = "SELECT %d FROM users \
-          WHERE email '%d'" % ("password", str(email))
+    sql = "SELECT %s FROM users \
+          WHERE email '%s'" % ("password", str(email))
     try:
        # Execute the SQL command
        c.execute(sql)
@@ -36,17 +36,18 @@ def getPassword(email):
 def createUser(email, password, slackid):
     conn = MySQLdb.connect(serverusername + ".mysql.pythonanywhere-services.com", serverusername, dbpassword, dbname)
     c = conn.cursor()
-    sql = "INSERT INTO `users`(email,password,slackid) VALUES (%d,%d,%d);" % (email, password, slackid)
+    sql = "INSERT INTO `users`(email,password,slackid) VALUES (%s,%s,%s)" % (email, password, slackid)
     try:
         c.execute(sql)
-        db.commit()
+        conn.commit()
     except:
-        db.rollback()
+        conn.rollback()
+        raise ValueError('A very specific bad thing happened.')
 
 def verifyUser(givenemail, givenpassword):
     conn = MySQLdb.connect(serverusername + ".mysql.pythonanywhere-services.com", serverusername, dbpassword, dbname)
     c = conn.cursor()
-    sql = "SELECT id FROM `users` WHERE (email = '%d' AND password = '%d')" % (str(givenemail), str(givenpassword))
+    sql = "SELECT id FROM `users` WHERE (email = '%s' AND password = '%s')" % (str(givenemail), str(givenpassword))
     try:
         # Execute the SQL command
         cursor.execute(sql)
@@ -58,6 +59,3 @@ def verifyUser(givenemail, givenpassword):
         return True
     except:
         return False
-
-
-    

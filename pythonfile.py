@@ -1,6 +1,7 @@
 # Making Required Imports
 from flask import Flask, redirect, request, url_for, session
 app = Flask(__name__)
+app.config["SECRET_KEY"] = "lkmaslkdsldsamdlsdmasldsmkdd"
 import requests
 import os
 from dbfunctions import *
@@ -35,6 +36,7 @@ def authorization():
 # Setting redirect route.
 @app.route("/auth/redirect", methods=['GET', 'POST'])
 def redirecting():
+    global globaltoken
     if request.method == "POST":
         emailaddress = request.form['email']
         password = request.form["password"]
@@ -43,30 +45,33 @@ def redirecting():
             session["user"] = emailaddress
             createUser(emailaddress, password, globaltoken)
             return "Everything created successfully!"
-    code = request.args.get('code')
-    url = 'https://slack.com/api/oauth.access'
-    try:
-        payload = {'code': code, 'client_id': str(clientid), 'client_secret': str(secretid), "redirect_uri": "https://www.messageschedule.com/auth/redirect"}
-        response = requests.get(url, params=payload)
-        data = response.json()
-        accesstoken = data["access_token"]
+        else:
+            return "Need to fix globaltoken setting."
+    else:
+        code = request.args.get('code')
+        url = 'https://slack.com/api/oauth.access'
+        try:
+            payload = {'code': code, 'client_id': str(clientid), 'client_secret': str(secretid), "redirect_uri": "https://www.messageschedule.com/auth/redirect"}
+            response = requests.get(url, params=payload)
+            data = response.json()
+            accesstoken = data["access_token"]
 	    
-    except HTTPError as e:
-        status_code = e.response.status_code
-        return status_code
+        except HTTPError as e:
+            status_code = e.response.status_code
+            return status_code
 
-    finally:
-        import slack as slack
-        f = str(data["access_token"])
-        client = slack.WebClient(token=f)
-        response = client.chat_postMessage(
-            channel='#general',
-            text="/shrug")
-        assert response["ok"]
-        assert response["message"]["text"] == "/shrug"
-        global globalclientnid
-        globaltoken = data["access_token"]
-        return render_template('signup.html')
+        finally:
+            import slack as slack
+            f = str(data["access_token"])
+            client = slack.WebClient(token=f)
+            response = client.chat_postMessage(
+                channel='#general',
+                text="/shrug")
+            assert response["ok"]
+            assert response["message"]["text"] == "/shrug"
+            globaltoken = data["access_token"]
+            return render_template('signup.html')
+        
 # Redirect route goes here to notify that the information has been successfully saved.
 @app.route("/done", methods=['GET', 'POST'])
 def done():
