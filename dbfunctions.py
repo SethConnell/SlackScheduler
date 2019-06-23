@@ -33,6 +33,7 @@ def verifyLogin(givenemail, givenpassword):
     except:
        return False
 
+
 def getPassword(email):
     # Gets password from user account.
     conn = MySQLdb.connect(serverusername + ".mysql.pythonanywhere-services.com", serverusername, dbpassword, dbname)
