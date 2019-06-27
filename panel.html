@@ -17,6 +17,11 @@
 </script>
 <title>How to Schedule Slack Messages | Message Schedule</title>
 <style>
+	#thing {
+		padding-top: 30vh;
+		display: block;
+	}
+	
 	.userinput {
 		margin: auto;
 		border-radius: 15px;
@@ -94,10 +99,8 @@
     
     
     #datepicker {
-        padding-top: 30vh;
         text-align: center;
         font-family: 'Poppins', sans-serif;
-        color: #ffffff;
         font-size: 38px;
     }
     
@@ -206,6 +209,7 @@
     <div id="bluesection">
         
 		<form action="" method="post">
+			<div id="thing"></div>
 			<input class="userinput" id="datepicker" placeholder="12/23/2019" name="date">
 			<br>
             <input class="userinput" id="time" placeholder="12pm" name="time">
