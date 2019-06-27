@@ -6,6 +6,15 @@
 <link href="https://fonts.googleapis.com/css?family=Arimo&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Poppins:300&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="/resources/demos/style.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css">
+<script>
+  $( function() {
+    $( "#datepicker" ).datepicker();
+  } );
+</script>
 <title>How to Schedule Slack Messages | Message Schedule</title>
 <style>
 	.userinput {
@@ -83,7 +92,8 @@
 		display: block;
     }
     
-    #subheadline {
+    
+    #datepicker {
         padding-top: 30vh;
         text-align: center;
         font-family: 'Poppins', sans-serif;
@@ -128,6 +138,10 @@
         text-align: center;
         
     }
+    
+    #time {
+        width: 100px;
+}
     
     #linkbutton {
 		max-width: 200px;
@@ -187,18 +201,14 @@
 
 <body>
 <div class = "content">
+    <header></header>
     
     <div id="bluesection">
-        <header>
-			<name>MessageSchedule.com</name>
-        </header>
         
-        <h1 id = "subheadline">Please Login</h1>
-        
-        <h2 id = "subsubheadline">Enter the following information to continue:</h2>
-        <br>
 		<form action="" method="post">
-			<input class="userinput" placeholder="Email" name="email">
+			<input class="userinput" id="datepicker" placeholder="12/23/2019" name="date">
+			<br>
+            <input class="userinput" id="time" placeholder="12pm" name="time">
 			<br>
 			<input class="userinput" placeholder="Password" type="password" name="password">
 			<br>
